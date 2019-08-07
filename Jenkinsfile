@@ -50,11 +50,8 @@ pipeline {
             sh "echo \$(jx-release-version) > VERSION"
             sh "jx step tag --version \$(cat VERSION)"
             sh "make build"
-            sh 'cat /home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/go-demo-6/values.yaml'
             sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-            println "DOCKER_REGISTRY=${DOCKER_REGISTRY}, ORG=${ORG}, APP_NAME=${APP_NAME}"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
-            sh 'cat /home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/go-demo-6/values.yaml'
           }
         }
       }
