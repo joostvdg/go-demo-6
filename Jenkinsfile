@@ -66,7 +66,10 @@ pipeline {
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
-            sh "jx step helm release"
+            sh 'cat charts/go-demo-6/values.yaml'
+            sh 'jx step helm release'
+            sh 'ls -lath charts/go-demo-6/'
+            sh 'cat charts/go-demo-6/values.yaml'
 
             // promote through all 'Auto' promotion Environments
             sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
