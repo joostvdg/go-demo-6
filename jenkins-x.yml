@@ -1,1 +1,1 @@
-dockerRegistryOwner: vfarcic
+env.spec.teamSettings.dockerRegistryOrg: vfarcic
